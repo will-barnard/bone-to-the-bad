@@ -49,11 +49,15 @@ document.addEventListener('DOMContentLoaded',
 }
 );
 
+function executeFunction(func) {
+    setTimeout(func, 0);
+}
+
 function loop() {
     new Audio('audio/badtothebone.wav').play();
     setTimeout(function(){
         if (numSwitch == 1) {
-            loop();
+            executeFunction(loop());
         }
     }, 2600);  
 }
@@ -66,7 +70,7 @@ function surprise() {
     setTimeout(function(){
         if (numSwitch == 2) {
             new Audio('audio/badtothebone.wav').play();
-            surprise();
+            executeFunction(surprise());
         }
     }, interval); 
 }
