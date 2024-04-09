@@ -1,4 +1,9 @@
 var numSwitch = 0;
+var event = new Event('loop', {
+    bubbles: true,
+    cancelable: true,
+    composed: false
+  })
 document.addEventListener('DOMContentLoaded', 
 () => {
 
@@ -44,20 +49,18 @@ document.addEventListener('DOMContentLoaded',
             document.getElementById("surprise-id").classList.add("surprise");
         }
     });
-
+    document.addEventListener("loop", () => {
+        loop();
+    });
     
 }
 );
-
-function executeFunction(func) {
-    setTimeout(func, 0);
-}
 
 function loop() {
     new Audio('audio/badtothebone.wav').play();
     setTimeout(function(){
         if (numSwitch == 1) {
-            executeFunction(loop());
+            document.dispatchEvent(event);
         }
     }, 2600);  
 }
@@ -70,7 +73,7 @@ function surprise() {
     setTimeout(function(){
         if (numSwitch == 2) {
             new Audio('audio/badtothebone.wav').play();
-            executeFunction(surprise());
+            surprise();
         }
     }, interval); 
 }
