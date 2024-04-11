@@ -19,6 +19,19 @@ body {
 #guitar img:hover {
     cursor: pointer;
 }
+#volume-slider {
+    margin: 20px;
+}
+#speaker {
+    height: 2vh;
+    
+}
+#controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
 .unselected {
     display: inline;
     padding: 5px;
