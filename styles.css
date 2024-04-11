@@ -14,16 +14,20 @@ body {
    margin-top: 100px;
    margin-bottom: 20px;
    border: 2px;
-   border-radius: 100px;
+   border-radius: 50px;
 }
 #guitar img:hover {
     cursor: pointer;
 }
-#volume-slider {
-    margin: 20px;
+#slider {
+    margin: 10px;
+    width: 40vw;
 }
 #speaker {
     height: 2vh;
+}
+#selector {
+    margin-top: 20px;
 }
 #controls {
     display: flex;
@@ -37,7 +41,7 @@ body {
     padding: 10px;
     border: 1px solid black;
     border-radius: 10px;
-    font-size: 2em;
+    font-size: 1.3em;
     font-weight: bold;
     cursor: pointer;
 }
