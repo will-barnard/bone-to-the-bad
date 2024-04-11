@@ -61,7 +61,6 @@ document.addEventListener('DOMContentLoaded',
 
     document.getElementById("slider").addEventListener("change", ()=> {
         sliderVal = document.getElementById("slider").value;
-        console.log(sliderVal)
         if (sliderVal == 0) {
             document.getElementById("speaker").src = "img/mute.png";
         } else if (sliderVal > 0) {
