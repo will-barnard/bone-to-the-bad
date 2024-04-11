@@ -1,6 +1,10 @@
 body {
     background-color: lightgoldenrodyellow;
     text-align: center;
+    font-family: sans-serif;
+}
+#guitar {
+    display: inline;
 }
 #guitar img {
    height: 50vh;
@@ -15,7 +19,7 @@ body {
 #guitar img:hover {
     cursor: pointer;
 }
-.loop, .surprise {
+.unselected {
     display: inline;
     padding: 5px;
     border: 1px solid black;
@@ -23,8 +27,10 @@ body {
     color: black;
     border-radius: 5px;
 }
-.loop, .surprise:hover {
+.unselected:hover {
     cursor: pointer;
+    background-color: black;
+    color: white;
 }
 .selected {
     background-color: black;
