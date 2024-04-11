@@ -4,6 +4,10 @@ var riff = new Audio('audio/badtothebone.wav');
 var riffLoop = new Audio('audio/badtothebone.wav');
 riffLoop.loop = true;
 
+var sliderVal = 0;
+
+
+
 document.addEventListener('DOMContentLoaded', 
 () => {
 
@@ -53,8 +57,15 @@ document.addEventListener('DOMContentLoaded',
             document.getElementById("surprise").classList.add("unselected");
         }
     });
-    document.addEventListener("loop", () => {
-        loop();
+
+    document.getElementById("slider").addEventListener("change", ()=> {
+        sliderVal = document.getElementById("slider").value;
+        console.log(sliderVal)
+        if (sliderVal == 0) {
+            document.getElementById("speaker").src = "img/mute.png";
+        } else if (sliderVal > 0) {
+            document.getElementById("speaker").src = "img/speaker.png";
+        }
     });
     
 }
