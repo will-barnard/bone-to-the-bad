@@ -5,6 +5,7 @@ var riffLoop = new Audio('audio/badtothebone.wav');
 riffLoop.loop = true;
 
 var sliderVal = 0;
+var sliderTick = 0;
 
 
 
@@ -65,6 +66,10 @@ document.addEventListener('DOMContentLoaded',
             document.getElementById("speaker").src = "img/mute.png";
         } else if (sliderVal > 0) {
             document.getElementById("speaker").src = "img/speaker.png";
+        }
+        sliderTick++;
+        if (sliderTick > 4) {
+            document.getElementById("bad-dude").classList.remove("hide");
         }
     });
     

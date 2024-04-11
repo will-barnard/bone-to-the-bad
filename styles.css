@@ -55,3 +55,6 @@ body {
 .selected:hover {
     cursor: pointer;
 }
+.hide {
+    display: none;
+}
