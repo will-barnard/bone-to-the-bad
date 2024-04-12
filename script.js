@@ -67,8 +67,14 @@ document.addEventListener('DOMContentLoaded',
             document.getElementById("speaker").src = "img/speaker.png";
         }
         sliderTick++;
-        if (sliderTick > 4) {
+        if (sliderTick > 2 && sliderTick < 4) {
             document.getElementById("bad-dude").classList.remove("hide");
+            document.getElementById("bad-dude").classList.add("unhide");
+        }
+        if (sliderTick > 4) {
+            document.getElementById("controls").classList.add("hide");
+            document.getElementById("privileges").classList.remove("hide");
+            document.getElementById("privileges").classList.add("unhide");
         }
     });
     
