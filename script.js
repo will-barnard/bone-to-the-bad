@@ -75,11 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
             speaker.src = "img/speaker.png";
         }
         sliderTick++;
-        if (sliderTick > 2 && sliderTick < 4) {
+        if (sliderTick > 0 && sliderTick < 2) {
             badDude.classList.remove("hide");
             badDude.classList.add("unhide");
         }
-        if (sliderTick > 4) {
+        if (sliderTick > 3) {
             document.getElementById("controls").classList.add("hide");
             document.getElementById("privileges").classList.remove("hide");
             document.getElementById("privileges").classList.add("unhide");
