@@ -80,7 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
             badDude.classList.add("unhide");
         }
         if (sliderTick > 3) {
-            document.getElementById("controls").classList.add("hide");
+            document.getElementById("controls").remove();
+            badDude.remove();
             document.getElementById("privileges").classList.remove("hide");
             document.getElementById("privileges").classList.add("unhide");
         }
