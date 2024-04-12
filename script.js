@@ -1,75 +1,83 @@
-var numSwitch = 0;
+// CONST
+var RIFF = new Audio('audio/badtothebone.wav');
+var RIFF_LOOP = new Audio('audio/badtothebone.wav');
+RIFF_LOOP.loop = true;
 
-var riff = new Audio('audio/badtothebone.wav');
-var riffLoop = new Audio('audio/badtothebone.wav');
-riffLoop.loop = true;
-
+// var
+var buttonSwitch = 0;
 var sliderVal = 0;
 var sliderTick = 0;
 
-
-
-document.addEventListener('DOMContentLoaded', 
-() => {
+// events
+document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("guitar").addEventListener("click", () => {
-        riff.play();
+        RIFF.play();
     });
 
+    let loop = document.getElementById("loop");
+    let surprise = document.getElementById("surprise");
+
+    // controls
     document.getElementById("loop").addEventListener("click", () => {
-        if (numSwitch == 0) {
-            numSwitch = 1;
-            document.getElementById("loop").classList.remove("unselected");
-            document.getElementById("loop").classList.add("selected");
-            loop();
-        } else if (numSwitch == 2) {
-            numSwitch = 1;
-            document.getElementById("surprise").classList.remove("selected");
-            document.getElementById("surprise").classList.add("unselected");
-            document.getElementById("loop").classList.remove("unselected");
-            document.getElementById("loop").classList.add("selected");
-            loop();
-        } else if (numSwitch == 1) {
-            numSwitch = 0;
-            document.getElementById("loop").classList.remove("selected");
-            document.getElementById("loop").classList.add("unselected");
-            riffLoop.pause();
+        if (buttonSwitch == 0) {
+            buttonSwitch = 1;
+            loop.classList.remove("unselected");
+            loop.classList.add("selected");
+            loopFunc();
+        } else if (buttonSwitch == 2) {
+            buttonSwitch = 1;
+            surprise.classList.remove("selected");
+            surprise.classList.add("unselected");
+            loop.classList.remove("unselected");
+            loop.classList.add("selected");
+            loopFunc();
+        } else if (buttonSwitch == 1) {
+            buttonSwitch = 0;
+            loop.classList.remove("selected");
+            loop.classList.add("unselected");
+            RIFF_LOOP.pause();
         }
     });
     document.getElementById("surprise").addEventListener("click", () => {
-        if (numSwitch == 0) {
-            numSwitch = 2;
-            document.getElementById("surprise").classList.remove("unselected");
-            document.getElementById("surprise").classList.add("selected");
-            if (riffLoop.paused != true) {
-                riffLoop.pause();
+        if (buttonSwitch == 0) {
+            buttonSwitch = 2;
+            surprise.classList.remove("unselected");
+            surprise.classList.add("selected");
+            if (RIFF_LOOP.paused != true) {
+                RIFF_LOOP.pause();
             }
-            surprise();
-        } else if (numSwitch == 1) {
-            numSwitch = 2;
-            document.getElementById("loop").classList.remove("selected");
-            document.getElementById("loop").classList.add("unselected");
-            document.getElementById("surprise").classList.remove("unselected");
-            document.getElementById("surprise").classList.add("selected");
-            surprise();
-        } else if (numSwitch == 2) {
-            numSwitch = 0;
-            document.getElementById("surprise").classList.remove("selected");
-            document.getElementById("surprise").classList.add("unselected");
+            surpriseFunc();
+        } else if (buttonSwitch == 1) {
+            buttonSwitch = 2;
+            loop.classList.remove("selected");
+            loop.classList.add("unselected");
+            surprise.classList.remove("unselected");
+            surprise.classList.add("selected");
+            surpriseFunc();
+        } else if (buttonSwitch == 2) {
+            buttonSwitch = 0;
+            surprise.classList.remove("selected");
+            surprise.classList.add("unselected");
         }
     });
 
+    // volume slider
     document.getElementById("slider").addEventListener("change", ()=> {
+
+        let speaker = document.getElementById("speaker");
+        let badDude = document.getElementById("bad-dude");
+
         sliderVal = document.getElementById("slider").value;
         if (sliderVal == 0) {
-            document.getElementById("speaker").src = "img/mute.png";
+            speaker.src = "img/mute.png";
         } else if (sliderVal > 0) {
-            document.getElementById("speaker").src = "img/speaker.png";
+            speaker.src = "img/speaker.png";
         }
         sliderTick++;
         if (sliderTick > 2 && sliderTick < 4) {
-            document.getElementById("bad-dude").classList.remove("hide");
-            document.getElementById("bad-dude").classList.add("unhide");
+            badDude.classList.remove("hide");
+            badDude.classList.add("unhide");
         }
         if (sliderTick > 4) {
             document.getElementById("controls").classList.add("hide");
@@ -77,26 +85,22 @@ document.addEventListener('DOMContentLoaded',
             document.getElementById("privileges").classList.add("unhide");
         }
     });
-    
 }
 );
 
-// playing functions
-
-function loop() {
-    riffLoop.play(); 
+// func
+function loopFunc() {
+    RIFF_LOOP.play(); 
 }
-
-function surprise() {
-
+function surpriseFunc() {
     let rand = Math.floor(Math.random() * 44) + 16;
     console.log("riff will play in " + rand + " min");
     let interval = rand * 1000 * 60; 
-
-    setTimeout(function(){
-        if (numSwitch == 2) {
-            riff.play();
+    setTimeout(()=> {
+        if (buttonSwitch == 2) {
+            RIFF.play();
             surprise();
         }
-    }, interval); 
+    }, interval
+); 
 }
