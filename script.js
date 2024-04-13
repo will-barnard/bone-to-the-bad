@@ -100,7 +100,7 @@ function surpriseFunc() {
     setTimeout(()=> {
         if (buttonSwitch == 2) {
             RIFF.play();
-            surprise();
+            surpriseFunc();
         }
     }, interval
 ); 
