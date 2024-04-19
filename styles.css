@@ -51,7 +51,7 @@ body {
     font-size: 1.3em;
     font-weight: bold;
     cursor: pointer;
-    margin: 10px;
+    margin: 5px;
 }
 .unselected {
     background-color: white;

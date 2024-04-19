@@ -168,7 +168,7 @@ function surpriseGroupFunc() {
     RIFF.play()
     console.log("surprise group");
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://brewsterdsm.ddns.net:49156/get");
+    xhr.open("GET", "https://brewsterdsm.ddns.net:49156/get");
     xhr.send();
     xhr.responseType = "json";
     xhr.onload = () => {
