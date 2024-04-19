@@ -7,6 +7,9 @@ RIFF_LOOP.loop = true;
 var buttonSwitch = 0;
 var sliderVal = 0;
 var sliderTick = 0;
+var surpriseBool = false;
+var surpriseGroupBool = false;
+var surpriseTime;
 
 // events
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let loop = document.getElementById("loop");
     let surprise = document.getElementById("surprise");
+    let surpriseGroup = document.getElementById("surprise-group");
 
     // controls
     document.getElementById("loop").addEventListener("click", () => {
@@ -27,8 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
             loopFunc();
         } else if (buttonSwitch == 2) {
             buttonSwitch = 1;
+            surpriseBool = false;
             surprise.classList.remove("selected");
             surprise.classList.add("unselected");
+            loop.classList.remove("unselected");
+            loop.classList.add("selected");
+            loopFunc();
+        } else if (buttonSwitch == 3) {
+            buttonSwitch = 1;
+            surpriseGroupBool = false;
+            surpriseGroup.classList.remove("selected");
+            surpriseGroup.classList.add("unselected");
             loop.classList.remove("unselected");
             loop.classList.add("selected");
             loopFunc();
@@ -50,15 +63,54 @@ document.addEventListener('DOMContentLoaded', () => {
             surpriseFunc();
         } else if (buttonSwitch == 1) {
             buttonSwitch = 2;
+            if (RIFF_LOOP.paused != true) {
+                RIFF_LOOP.pause();
+            }
             loop.classList.remove("selected");
             loop.classList.add("unselected");
             surprise.classList.remove("unselected");
             surprise.classList.add("selected");
             surpriseFunc();
+        } else if (buttonSwitch == 3) {
+            buttonSwitch = 2;
+            surpriseGroupBool = false;
+            surpriseGroup.classList.remove("selected");
+            surpriseGroup.classList.add("unselected");
+            surprise.classList.remove("unselected");
+            surprise.classList.add("selected");
+            surpriseFunc();
         } else if (buttonSwitch == 2) {
             buttonSwitch = 0;
+            surpriseBool = false;
             surprise.classList.remove("selected");
             surprise.classList.add("unselected");
+        }
+    });
+    document.getElementById("surprise-group").addEventListener("click", () => {
+        if (buttonSwitch == 0) {
+            buttonSwitch = 3;
+            surpriseGroup.classList.remove("unselected");
+            surpriseGroup.classList.add("selected");
+            surpriseGroupFunc();
+        } else if (buttonSwitch == 1) {
+            buttonSwitch = 3;
+            loop.classList.remove("selected");
+            loop.classList.add("unselected");
+            surpriseGroup.classList.remove("unselected");
+            surpriseGroup.classList.add("selected");
+            surpriseGroupFunc();
+        } else if (buttonSwitch == 2) {
+            buttonSwitch = 3;
+            surpriseBool = false;
+            surprise.classList.remove("selected");
+            surprise.classList.add("unselected");
+            surpriseGroup.classList.remove("unselected");
+            surpriseGroup.classList.add("selected");
+            surpriseGroupFunc();
+        } else if (buttonSwitch == 3) {
+            buttonSwitch = 0;
+            surpriseGroup.classList.remove("selected");
+            surpriseGroup.classList.add("unselected");
         }
     });
 
@@ -94,14 +146,45 @@ function loopFunc() {
     RIFF_LOOP.play(); 
 }
 function surpriseFunc() {
-    let rand = Math.floor(Math.random() * 44) + 16;
-    console.log("riff will play in " + rand + " min");
-    let interval = rand * 1000 * 60; 
-    setTimeout(()=> {
-        if (buttonSwitch == 2) {
+    surpriseBool = true;
+    surprise(surpriseBool)
+}
+function surprise(bool) {
+    if (bool) {
+        let rand = Math.floor(Math.random() * 44) + 16;
+        console.log("riff will play in " + rand + " min");
+        let interval = rand * 1000 * 60; 
+        setTimeout(()=> {
+            if (buttonSwitch == 2) {
             RIFF.play();
-            surpriseFunc();
-        }
-    }, interval
-); 
+            surprise();
+            }
+        }, interval
+    ); 
+    } 
+}
+function surpriseGroupFunc() {
+    RIFF.play()
+    console.log("surprise group");
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://brewsterdsm.ddns.net:49156/get");
+    xhr.send();
+    xhr.responseType = "json";
+    xhr.onload = () => {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        surpriseTime = new Date(xhr.response);
+        let interval = surpriseTime - Date.now();
+        interval  = (interval) - (5 * 60 * 60 * 1000);
+        console.log("riff will play in " + (interval / 60 / 1000) + " min");
+        console.log("riff will play in " + (interval) + " miliseconds");
+        setTimeout( ()=> {
+            if (buttonSwitch == 3) {
+                RIFF.play();
+                surpriseGroupFunc();
+            }
+        }, interval);
+    } else {
+        console.log(`Error: ${xhr.status}`);
+    }
+};
 }
