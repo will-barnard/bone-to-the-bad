@@ -29,12 +29,14 @@ body {
 }
 #selector {
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 #controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     margin: 20px;
     margin-top: 20px;
 }
@@ -49,6 +51,7 @@ body {
     font-size: 1.3em;
     font-weight: bold;
     cursor: pointer;
+    margin: 10px;
 }
 .unselected {
     background-color: white;

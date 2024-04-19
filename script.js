@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             buttonSwitch = 3;
             surpriseGroup.classList.remove("unselected");
             surpriseGroup.classList.add("selected");
-            surpriseGroupFunc();
+            // surpriseGroupFunc();
         } else if (buttonSwitch == 1) {
             buttonSwitch = 3;
             loop.classList.remove("selected");
