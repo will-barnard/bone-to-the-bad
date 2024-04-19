@@ -29,6 +29,7 @@ body {
 }
 #selector {
     margin-top: 20px;
+    display: flex;
 }
 #controls {
     display: flex;

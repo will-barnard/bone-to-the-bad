@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.getElementById("surprise-group").addEventListener("click", () => {
         if (buttonSwitch == 0) {
+            console.log("test");
             buttonSwitch = 3;
             surpriseGroup.classList.remove("unselected");
             surpriseGroup.classList.add("selected");
