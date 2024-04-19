@@ -29,12 +29,12 @@ body {
 }
 #selector {
     margin-top: 20px;
-    display: flex;
 }
 #controls {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     margin: 20px;
     margin-top: 20px;
 }
