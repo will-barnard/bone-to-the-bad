@@ -165,8 +165,8 @@ function surprise(bool) {
 }
 function surpriseGroupFunc() {
     RIFF.play()
-    console.log("surprise group");
     const xhr = new XMLHttpRequest();
+    console.log(window.location.hostname);
     xhr.open("GET", "http://brewsterdsm.ddns.net:49156/get");
     xhr.send();
     xhr.responseType = "json";
@@ -175,12 +175,13 @@ function surpriseGroupFunc() {
         surpriseTime = new Date(xhr.response);
         let interval = surpriseTime - Date.now();
         interval  = (interval) - (5 * 60 * 60 * 1000);
-        console.log("riff will play in " + (interval / 60 / 1000) + " min");
-        console.log("riff will play in " + (interval) + " miliseconds");
+        console.log("riff will play in " + Math.floor(interval / 60 / 1000) + " min");
         setTimeout( ()=> {
             if (buttonSwitch == 3) {
                 RIFF.play();
-                surpriseGroupFunc();
+                setTimeout( () => {
+                    surpriseGroupFunc();
+                }, 5000)
             }
         }, interval);
     } else {
