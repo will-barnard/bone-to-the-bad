@@ -165,8 +165,11 @@ function surprise(bool) {
 }
 function surpriseGroupFunc() {
     RIFF.play()
+
+    if (!window.location.hostname.startsWith("www")) {
+        console.log("push to www");
+    }
     const xhr = new XMLHttpRequest();
-    console.log(window.location.hostname);
     xhr.open("GET", "http://brewsterdsm.ddns.net:49156/get");
     xhr.send();
     xhr.responseType = "json";
