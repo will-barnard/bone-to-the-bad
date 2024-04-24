@@ -88,11 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.getElementById("surprise-group").addEventListener("click", () => {
         if (buttonSwitch == 0) {
-            console.log("test");
             buttonSwitch = 3;
             surpriseGroup.classList.remove("unselected");
             surpriseGroup.classList.add("selected");
-            // surpriseGroupFunc();
+            surpriseGroupFunc();
         } else if (buttonSwitch == 1) {
             buttonSwitch = 3;
             loop.classList.remove("selected");
@@ -168,7 +167,7 @@ function surpriseGroupFunc() {
     RIFF.play()
     console.log("surprise group");
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://brewsterdsm.ddns.net:49156/get");
+    xhr.open("GET", "http://brewsterdsm.ddns.net:49156/get");
     xhr.send();
     xhr.responseType = "json";
     xhr.onload = () => {
