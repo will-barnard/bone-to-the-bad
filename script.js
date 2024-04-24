@@ -14,6 +14,10 @@ var surpriseTime;
 // events
 document.addEventListener('DOMContentLoaded', () => {
 
+    if (!window.location.hostname.startsWith("www")) {
+        window.location.href = "http://www.bonetothebad.com";
+    } 
+
     document.getElementById("guitar").addEventListener("click", () => {
         RIFF.play();
     });
@@ -88,29 +92,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.getElementById("surprise-group").addEventListener("click", () => {
         if (buttonSwitch == 0) {
-            if (!window.location.hostname.startsWith("www")) {
-                window.location.href = "www.bonetothebad.com";
-            } 
             buttonSwitch = 3;
             surpriseGroup.classList.remove("unselected");
             surpriseGroup.classList.add("selected");
             surpriseGroupFunc();
         } else if (buttonSwitch == 1) {
-            if (!window.location.hostname.startsWith("www")) {
-                window.location.href = "www.bonetothebad.com";
-        
-            } 
             buttonSwitch = 3;
             loop.classList.remove("selected");
             loop.classList.add("unselected");
             surpriseGroup.classList.remove("unselected");
             surpriseGroup.classList.add("selected");
             surpriseGroupFunc();
-        } else if (buttonSwitch == 2) {
-            if (!window.location.hostname.startsWith("www")) {
-                window.location.href = "www.bonetothebad.com";
-        
-            } 
+        } else if (buttonSwitch == 2) { 
             buttonSwitch = 3;
             surpriseBool = false;
             surprise.classList.remove("selected");
