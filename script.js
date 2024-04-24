@@ -168,6 +168,8 @@ function surpriseGroupFunc() {
 
     if (!window.location.hostname.startsWith("www")) {
         console.log("push to www");
+    } else {
+        console.log("already on www");
     }
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://brewsterdsm.ddns.net:49156/get");
