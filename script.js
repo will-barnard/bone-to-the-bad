@@ -88,11 +88,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.getElementById("surprise-group").addEventListener("click", () => {
         if (buttonSwitch == 0) {
+            if (!window.location.hostname.startsWith("www")) {
+                window.location.href = "www.bonetothebad.com";
+            } 
             buttonSwitch = 3;
             surpriseGroup.classList.remove("unselected");
             surpriseGroup.classList.add("selected");
             surpriseGroupFunc();
         } else if (buttonSwitch == 1) {
+            if (!window.location.hostname.startsWith("www")) {
+                window.location.href = "www.bonetothebad.com";
+        
+            } 
             buttonSwitch = 3;
             loop.classList.remove("selected");
             loop.classList.add("unselected");
@@ -100,6 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
             surpriseGroup.classList.add("selected");
             surpriseGroupFunc();
         } else if (buttonSwitch == 2) {
+            if (!window.location.hostname.startsWith("www")) {
+                window.location.href = "www.bonetothebad.com";
+        
+            } 
             buttonSwitch = 3;
             surpriseBool = false;
             surprise.classList.remove("selected");
@@ -166,10 +177,6 @@ function surprise(bool) {
 function surpriseGroupFunc() {
     RIFF.play()
 
-    if (!window.location.hostname.startsWith("www")) {
-        window.location.href = "www.bonetothebad.com";
-
-    } 
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://brewsterdsm.ddns.net:49156/get");
     xhr.send();
