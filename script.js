@@ -184,6 +184,7 @@ function surpriseGroupFunc() {
             if (buttonSwitch == 3) {
                 RIFF.play();
                 setTimeout( () => {
+                    RIFF.pause()
                     surpriseGroupFunc();
                 }, 5000)
             }
