@@ -178,7 +178,7 @@ function surpriseGroupFunc() {
     if (xhr.readyState == 4 && xhr.status == 200) {
         surpriseTime = new Date(xhr.response);
         let interval = surpriseTime - Date.now();
-        interval  = (interval) - (5 * 60 * 60 * 1000);
+        interval  = (interval) - (5 * 60 * 60 * 1000) + 1000;
         console.log("riff will play in " + Math.floor(interval / 60 / 1000) + " min");
         setTimeout( ()=> {
             if (buttonSwitch == 3) {
